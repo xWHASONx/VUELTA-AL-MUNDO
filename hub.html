@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuelta al Mundo Tours - Hub de Herramientas</title>
+    <link rel="stylesheet" href="css/main.css?v=1784890000">
+    <style>
+        @font-face {
+            font-family: "Goldplay";
+            src: url("assets/fonts/Goldplay-Light.otf") format("opentype");
+            font-weight: 300 900;
+            font-style: normal;
+        }
+
+        * { font-family: 'Goldplay', sans-serif !important; -webkit-text-stroke: 0.4px currentColor; }
+
+        body {
+            background-color: #1a4999;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(241, 125, 58, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 90% 90%, rgba(54, 158, 245, 0.2) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NAVBAR GLASSMORPHIC */
+        .navbar {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 18px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            -webkit-text-stroke: 0.8px currentColor;
+        }
+        .nav-logo span { color: #f17d3a; }
+        .nav-logo-tag {
+            background: rgba(54, 158, 245, 0.2);
+            border: 1px solid rgba(54, 158, 245, 0.4);
+            color: #369ef5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .user-info-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0a0a0a;
+            padding: 6px 18px 6px 8px;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f17d3a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(241, 125, 58, 0.4);
+        }
+        .user-name {
+            font-weight: 800;
+            font-size: 14px;
+            color: #ffffff;
+            -webkit-text-stroke: 0.6px currentColor;
+        }
+
+        .btn-logout {
+            background: rgba(225, 29, 72, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(225, 29, 72, 0.3);
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            background: #e11d48;
+            color: #ffffff;
+            border-color: #e11d48;
+            transform: translateY(-1px);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 24px;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .welcome-section h1 {
+            font-size: 40px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            -webkit-text-stroke: 1px currentColor;
+        }
+        .welcome-section h1 span {
+            color: #f17d3a;
+        }
+        .welcome-section p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* TOOLS GRID */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .tool-card {
+            background: #0a0a0a;
+            border-radius: 24px;
+            padding: 38px 32px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border-color: #369ef5;
+        }
+
+        .tool-card-badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .cotizador .tool-card-badge { background: rgba(241, 125, 58, 0.2); color: #f17d3a; border: 1px solid rgba(241, 125, 58, 0.4); }
+        .prereserva .tool-card-badge { background: rgba(54, 158, 245, 0.2); color: #369ef5; border: 1px solid rgba(54, 158, 245, 0.4); }
+        .confirmador .tool-card-badge { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
+
+        .tool-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            margin-bottom: 24px;
+            transition: transform 0.3s;
+        }
+        .tool-card:hover .tool-icon-wrapper {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .cotizador .tool-icon-wrapper { background: #f17d3a; color: white; box-shadow: 0 10px 20px rgba(241, 125, 58, 0.4); }
+        .prereserva .tool-icon-wrapper { background: #369ef5; color: white; box-shadow: 0 10px 20px rgba(54, 158, 245, 0.4); }
+        .confirmador .tool-icon-wrapper { background: #1a4999; color: white; border: 1px solid #369ef5; box-shadow: 0 10px 20px rgba(26, 73, 153, 0.5); }
+
+        .tool-card h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            -webkit-text-stroke: 0.8px currentColor;
+        }
+        .tool-card p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.65;
+            margin-bottom: 28px;
+            flex-grow: 1;
+        }
+
+        .tool-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: #111111;
+            font-size: 14px;
+            font-weight: 800;
+            color: #369ef5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-text-stroke: 0.6px currentColor;
+        }
+        .tool-card:hover .tool-link-btn {
+            background: #f17d3a;
+            color: #ffffff;
+            border-color: #f17d3a;
+        }
+        .tool-link-btn svg {
+            width: 20px; height: 20px;
+            transition: transform 0.3s;
+        }
+        .tool-card:hover .tool-link-btn svg {
+            transform: translateX(6px);
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 24px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 16px 20px; }
+            .user-name { display: none; }
+            .container { padding: 32px 16px; }
+            .welcome-section h1 { font-size: 28px; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="hub.html" class="nav-logo">
+            VUELTA AL MUNDO <span>TOURS</span>
+            <span class="nav-logo-tag">HUB PRO</span>
+        </a>
+        <div class="nav-user">
+            <div class="user-info-card">
+                <div class="user-avatar" id="user-initial">A</div>
+                <span class="user-name" id="user-name">Asesor</span>
+            </div>
+            <button class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1 id="greeting-text">¡Hola!</h1>
+            <p>Selecciona la herramienta operativa que deseas utilizar hoy para tus clientes.</p>
+        </div>
+
+        <div class="tools-grid">
+            <a href="cotizador.html" class="tool-card cotizador">
+                <span class="tool-card-badge">Cotizaciones PDF</span>
+                <div class="tool-icon-wrapper">🌍</div>
+                <h2>Cotizador Pro</h2>
+                <p>Arma propuestas de viaje increíbles. Incluye vuelos, hoteles, tours y genera cotizaciones en PDF personalizadas al instante.</p>
+                <div class="tool-link-btn">
+                    <span>Ingresar al Cotizador</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </a>
+
+            <a href="prereserva.html" class="tool-card prereserva">
+                <span class="tool-card-badge">Comprobantes</span>
+                <div class="tool-icon-wrapper">📄</div>
+                <h2>Pre-Reserva</h2>
+                <p>Genera comprobantes oficiales de pre-reserva con los datos del cliente, itinerario preliminar y plan de pagos.</p>
+                <div class="tool-link-btn">
+                    <span>Generar Pre-Reserva</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </a>
+
+            <a href="confirmador.html" class="tool-card confirmador">
+                <span class="tool-card-badge">Voucher Final</span>
+                <div class="tool-icon-wrapper">✅</div>
+                <h2>Confirmador</h2>
+                <p>Emite la confirmación final de viaje una vez recibido el pago completo, lista para entregar al pasajero.</p>
+                <div class="tool-link-btn">
+                    <span>Emitir Confirmación</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>VUELTA AL MUNDO TOURS · NIT: 901802306 · RNT: 198181 · Agencia de Viajes y Turismo</p>
+    </footer>
+
+    <script src="js/firebase-config.js?v=1784867500"></script>
+    <script>
+        const currentUser = localStorage.getItem('vam_user');
+        if (!currentUser || !window.VAM_CONFIG || !VAM_CONFIG.ADVISORS[currentUser]) {
+            localStorage.removeItem('vam_user');
+            window.location.href = 'index.html';
+        } else {
+            const advisor = VAM_CONFIG.ADVISORS[currentUser];
+            const firstName = advisor.name.split(' ')[0];
+            document.getElementById('user-name').textContent = advisor.name;
+            document.getElementById('greeting-text').innerHTML = `¡Hola, <span>${firstName}</span>!`;
+            document.getElementById('user-initial').textContent = firstName.charAt(0).toUpperCase();
+        }
+
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            localStorage.removeItem('vam_user');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

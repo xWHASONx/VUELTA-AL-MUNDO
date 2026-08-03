@@ -1,0 +1,145 @@
+/* css/main.css - Estilos globales y tokens corporativos de Vuelta al Mundo Tours */
+
+@font-face {
+    font-family: "Goldplay";
+    src: url("../assets/fonts/Goldplay-Light.otf") format("opentype"),
+         url("assets/fonts/Goldplay-Light.otf") format("opentype");
+    font-weight: 300 900;
+    font-style: normal;
+}
+
+:root {
+    /* Paleta Oficial Especificada por el Usuario */
+    --c-brand-blue: #1a4999;          /* Azul Fondo Principal */
+    --c-brand-turquoise: #369ef5;     /* Turquesa / Celeste */
+    --c-brand-coral: #f17d3a;         /* Coral / Naranja */
+    --c-black: #000000;               /* Negro Puro */
+    --c-dark-card: #0a0a0a;           /* Negro Tarjeta */
+    --c-dark-input: #111111;          /* Negro Input */
+    --c-white: #ffffff;               /* Blanco */
+
+    /* Acentos e Interacción */
+    --c-brand-coral-hover: #d96827;
+    --c-brand-turquoise-hover: #2187e0;
+    --c-text-muted: #94a3b8;
+    --c-border-dark: #222222;
+    --c-border-light: rgba(255, 255, 255, 0.15);
+
+    /* Sombras */
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.25);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-coral-glow: 0 8px 25px rgba(241, 125, 58, 0.4);
+    --shadow-turquoise-glow: 0 8px 25px rgba(54, 158, 245, 0.4);
+
+    /* Transiciones */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Goldplay', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    -webkit-text-stroke: 0.4px currentColor;
+}
+
+body {
+    background-color: var(--c-brand-blue);
+    color: var(--c-white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* NEGRILLA REFORZADA - Solo existe Goldplay-Light.otf */
+strong, b, h1, h2, h3, h4, h5, h6,
+.confirmation-pill, .price-section-title,
+.tool-card h2, .nav-logo, .user-name,
+.btn-vam-primary, .btn-vam-secondary,
+th, legend, .submit-button, .action-button,
+.saldo-box p, .voucher-title h2,
+.quote-card h3, .dashboard-header h2 {
+    font-weight: 900 !important;
+    -webkit-text-stroke: 0.9px currentColor;
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--c-brand-coral);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--c-brand-coral-hover);
+}
+
+/* Efectos Glassmorphism sobre Fondo Azul */
+.glass-effect {
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Botones Principales y Secundarios Globales */
+.btn-vam-primary {
+    background: linear-gradient(135deg, var(--c-brand-coral) 0%, var(--c-brand-coral-hover) 100%);
+    color: var(--c-white);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-coral-glow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+.btn-vam-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(241, 125, 58, 0.6);
+}
+
+.btn-vam-secondary {
+    background: var(--c-brand-turquoise);
+    color: var(--c-white);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-turquoise-glow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+.btn-vam-secondary:hover {
+    background: var(--c-brand-turquoise-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(54, 158, 245, 0.6);
+}
+
+/* Animaciones globales */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
