@@ -1,0 +1,23 @@
+# --- Generado automaticamente: cosas que NO deben subir a GitHub ---
+node_modules/
+.next/
+dist/
+build/
+out/
+.cache/
+.DS_Store
+*.log
+npm-debug.log*
+
+# Claves y configuracion privada (NUNCA subir)
+.env
+.env.local
+.env.*.local
+*serviceAccount*.json
+*credentials*.json
+*.pem
+
+# Archivos temporales de macOS
+.AppleDouble
+Icon?
+._*
