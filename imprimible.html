@@ -3,238 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Material Imprimible - Vuelta al Mundo Tours</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/print.css?v=1784874000">
+    <title>Imprimible Pre-Reserva - Vuelta al Mundo Tours</title>
+    <link rel="icon" href="assets/logo/logo-circular-blanco.png">
+    <link rel="stylesheet" href="css/fonts.css?v=20261026a">
+    <link rel="stylesheet" href="css/print-corporativo.css?v=20261026a">
+    <style>
+        body { margin: 0; background: #1a4999; font-family: "Goldplay", sans-serif; }
+        .controls-bar { background: rgba(10,10,10,0.92); color: #fff; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
+        .controls-bar img { height: 30px; vertical-align: middle; }
+        .controls-bar button { border: none; border-radius: 10px; padding: 11px 20px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; }
+        .btn-primary { background: #FF7F00; color: #fff; }
+        .btn-secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.25) !important; }
+        #data-status { font-size: 13px; font-weight: 600; }
+        .print-document { padding: 30px 0 60px; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+        @media print { body { background: #fff; } .print-document { padding: 0; gap: 0; display: block; } }
+    </style>
 </head>
 <body>
-    
-    <!-- CONTROLES PARA EL ASESOR (NO SE IMPRIMEN) -->
     <div class="no-print controls-bar">
-        <div class="controls-content">
-            <div>
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours" style="height: 30px; vertical-align: middle; margin-right: 15px;">
-                <button onclick="window.location.href='prereserva.html'" class="btn-secondary">Volver a Pre-Reserva</button>
-            </div>
-            <div>
-                <span id="data-status" style="margin-right: 15px; font-weight: 700; color: #ffeb3b;">Cargando datos...</span>
-                <button onclick="window.print()" class="btn-primary">🖨️ Imprimir Documento (5 Hojas)</button>
-            </div>
+        <div>
+            <img src="assets/logo/logo-linea-blanco.png" alt="Vuelta al Mundo Tours">
+            <button id="back-btn" onclick="window.location.href='prereserva.html'" class="btn-secondary" style="margin-left:14px">← Volver a Pre-Reserva</button>
         </div>
-        <div class="image-uploader">
-            <p><strong>Configuración de Portada:</strong> Selecciona un prediseño o pega tu propia imagen.</p>
-            <div class="preset-buttons" style="margin-top: 10px; margin-bottom: 10px; display: flex; gap: 10px; justify-content: center;">
-                <button type="button" class="btn-preset" data-img="assets/preset_cancun.jpg">🌴 Cancún</button>
-                <button type="button" class="btn-preset" data-img="assets/preset_punta_cana.jpg">🏖️ Punta Cana</button>
-                <button type="button" class="btn-preset" data-img="assets/preset_panama.jpg">🏙️ Panamá</button>
-                <button type="button" class="btn-preset" data-img="assets/preset_generica.jpg">✈️ Genérica</button>
-            </div>
-            <div id="cover-paste-area" class="paste-area">
-                <p>O haz clic aquí y presiona Ctrl+V / Cmd+V para pegar una foto personalizada</p>
-                <img id="cover-preview" src="" style="display:none; max-height: 100px; margin: 10px auto 0;">
-            </div>
+        <div>
+            <span id="data-status">Cargando datos...</span>
+            <button onclick="window.print()" class="btn-primary" style="margin-left:14px">🖨️ Imprimir / Guardar PDF</button>
         </div>
     </div>
 
-    <!-- DOCUMENTO A IMPRIMIR -->
-    <div class="print-document">
+    <div class="print-document" id="print-document"></div>
 
-        <!-- HOJA 1: PORTADA -->
-        <div class="page cover-page">
-            <div class="cover-image-container">
-                <img id="pdf-cover-img" src="" alt="Portada" style="display:none;">
-                <div id="pdf-cover-placeholder" class="cover-placeholder">
-                    <h2>VUELTA AL MUNDO TOURS</h2>
-                    <p style="font-size: 20px; font-weight: 700; margin-top: 10px;">Tu próxima aventura te espera</p>
-                </div>
-            </div>
-            <div class="cover-overlay"></div>
-            <div class="cover-content">
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours" class="cover-logo">
-                <h1 class="cover-title">Propuesta de Viaje</h1>
-                <h2 class="cover-client" id="cover-client-name">NOMBRE DEL CLIENTE</h2>
-                <div class="cover-dest-box" id="cover-dest-name">DESTINO</div>
-                <div class="cover-advisor">Preparado por: <strong id="cover-advisor-name" style="color:var(--c-brand-yellow);">Tu Asesor</strong></div>
-            </div>
-        </div>
-
-        <!-- HOJA 2: DETALLES DEL VIAJE -->
-        <div class="page details-page">
-            <div class="bg-decor"></div>
-            <header class="page-header">
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours">
-                <span>Resumen del Viaje</span>
-            </header>
-            
-            <div class="page-body" style="position: relative; z-index: 2;">
-                <h2 class="section-title">Detalles de la Reserva</h2>
-                
-                <div class="details-grid">
-                    <div class="detail-box">
-                        <h3>🎟️ Localizador / Reserva</h3>
-                        <p id="det-localizador" class="highlight-text">Pendiente</p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>📍 Destino</h3>
-                        <p id="det-destino"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>🏨 Hotel / Alojamiento</h3>
-                        <p id="det-hotel"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>🍽️ Régimen Alimenticio</h3>
-                        <p id="det-regimen"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>📅 Fecha Check-in</h3>
-                        <p id="det-checkin"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>📅 Fecha Check-out</h3>
-                        <p id="det-checkout"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>🌙 Duración</h3>
-                        <p id="det-noches"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>🛏️ Habitaciones</h3>
-                        <p id="det-habitaciones"></p>
-                    </div>
-                    <div class="detail-box">
-                        <h3>💰 Valor Restante</h3>
-                        <p id="det-valor-restante" class="highlight-text"></p>
-                    </div>
-                </div>
-
-                <h2 class="section-title" style="margin-top: 40px;">Pasajeros y Acompañantes</h2>
-                <div class="passengers-box">
-                    <p><strong>Titular:</strong> <span id="det-titular" style="color:var(--c-dark-blue); font-weight:700;"></span> <span style="font-size:14px; color:var(--c-gray);">(Doc: <span id="det-doc"></span>)</span></p>
-                    <p style="margin-top: 15px; color:var(--c-brand-primary); font-weight: 700;">Acompañantes:</p>
-                    <p id="det-acompanantes" style="white-space: pre-line; margin-top: 5px; color:var(--c-dark-blue);"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- HOJA NUEVA: COMENTARIOS -->
-        <div class="page comments-page" id="comments-page" style="display: none;">
-            <div class="bg-decor"></div>
-            <header class="page-header">
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours">
-                <span>Notas y Requerimientos</span>
-            </header>
-            
-            <div class="page-body">
-                <h2 class="section-title">Comentarios Adicionales</h2>
-                <div class="terms-text" style=" padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px;">
-                    <p id="det-comentarios" style="white-space: pre-line; font-size: 14px; line-height: 1.6; color: var(--c-dark-blue); margin: 0;"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- HOJA 3: TÉRMINOS Y CONDICIONES Y FIRMAS -->
-        <div class="page terms-page">
-            <header class="page-header">
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours">
-                <span>Términos y Condiciones</span>
-            </header>
-            
-            <div class="page-body">
-                <h2 class="section-title">Políticas de la Agencia</h2>
-                <div class="terms-text">
-                    <p><strong>1. Políticas de Cancelación y Reembolso:</strong> Toda cancelación o modificación debe solicitarse por escrito. Los depósitos iniciales y abonos para asegurar cupos aéreos, hoteleros o de cruceros son estrictamente NO REEMBOLSABLES debido a las políticas impuestas por los proveedores finales. En caso de cancelación por parte del cliente, las penalidades se aplicarán según las condiciones de la tarifa adquirida.</p>
-                    <p><strong>2. Pagos y Saldos:</strong> El saldo total del plan turístico debe encontrarse pagado en su totalidad mínimo cuarenta y cinco (45) días antes de la fecha de viaje (salvo indicación en contrario especificada en la cotización). El incumplimiento en las fechas de pago ocasionará la cancelación automática de la reserva con pérdida del depósito inicial.</p>
-                    <p><strong>3. Responsabilidad:</strong> VUELTA AL MUNDO TOURS actúa únicamente en calidad de agente intermediario entre el cliente y los prestadores directos de los servicios (aerolíneas, hoteles, operadores turísticos). Por tanto, declina toda responsabilidad por deficiencias en la prestación del servicio, daños, pérdidas, accidentes, retrasos o irregularidades que puedan ocurrir durante el viaje por causas de fuerza mayor o casos fortuitos.</p>
-                    <p><strong>4. Documentación:</strong> Es responsabilidad exclusiva del pasajero cumplir con los requisitos gubernamentales de salida e ingreso, presentar los documentos de identidad válidos (pasaportes, visas, permisos para menores, vacunas, etc.). VUELTA AL MUNDO TOURS no se hace responsable por inconvenientes derivados de la falta o irregularidad en los documentos del cliente.</p>
-                    <p><strong>5. Vuelos y Horarios:</strong> Los horarios de vuelos son informativos y están sujetos a cambio por parte de la aerolínea. Es obligación del pasajero reconfirmar su vuelo 24 horas antes de la salida y presentarse en el aeropuerto con la debida anticipación (3 horas para vuelos internacionales, 2 horas para nacionales).</p>
-                    <p style="margin-top: 20px; font-size: 14px; font-weight: 600;">Con la firma de este documento, el titular de la reserva declara haber leído, comprendido y aceptado en su totalidad las condiciones generales del servicio aquí descritas, asumiendo las responsabilidades y obligaciones de los acompañantes detallados en la página anterior.</p>
-                </div>
-
-                <div class="signatures-section">
-                    <div class="signature-box">
-                        <div class="signature-line"></div>
-                        <p><strong>Firma del Cliente Titular</strong></p>
-                        <p>CC / Pasaporte: <span id="sig-client-doc">_________________</span></p>
-                        <p>Fecha: _________________</p>
-                    </div>
-                    <div class="signature-box">
-                        <div class="signature-line"></div>
-                        <p><strong><span id="sig-advisor">Asesor Vuelta al Mundo Tours</span></strong></p>
-                        <p>VUELTA AL MUNDO TOURS TRAVEL AGENCY</p>
-                        <p>Fecha: _________________</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- HOJA 4: GARANTÍA -->
-        <div class="page warranty-page">
-            <div class="bg-decor-2"></div>
-            <header class="page-header">
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours">
-                <span>Certificado de Garantía</span>
-            </header>
-            
-            <div class="page-body warranty-body" style="position: relative; z-index: 2;">
-                <div class="warranty-badge">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                </div>
-                <h1 class="warranty-title">Garantía de Servicio</h1>
-                
-                <p class="warranty-desc">
-                    Este documento certifica que la reserva a nombre de <strong id="war-client" style="color:var(--c-dark-blue);"></strong> bajo el localizador <strong id="war-loc" style="color:var(--c-brand-primary);"></strong> ha sido procesada exitosamente por nuestra agencia.
-                </p>
-
-                <div class="warranty-points">
-                    <div class="w-point">
-                        <strong>🛡️ Compra 100% Segura</strong>
-                        <p>Tu inversión está respaldada. Trabajamos únicamente con operadores turísticos certificados, aerolíneas comerciales y cadenas hoteleras de primer nivel reconocidas mundialmente.</p>
-                    </div>
-                    <div class="w-point">
-                        <strong>📞 Acompañamiento 24/7</strong>
-                        <p>Estaremos contigo antes, durante y después de tu viaje. Tienes a tu disposición nuestra línea corporativa de emergencias para resolver cualquier eventualidad que se presente en tu destino.</p>
-                    </div>
-                    <div class="w-point">
-                        <strong>⭐ Calidad Garantizada</strong>
-                        <p>Nos comprometemos rigurosamente a verificar que todos los servicios contratados cumplan y superen los estándares de calidad que te prometimos al momento de tu compra.</p>
-                    </div>
-                </div>
-
-                <div class="warranty-footer-text">
-                    <p style="font-weight: 900; color: var(--c-dark-blue); font-size: 20px; margin-bottom: 5px;">VUELTA AL MUNDO TOURS TRAVEL AGENCY</p>
-                    <p>NIT: 901802306 | RNT: 198181</p>
-                    <p>CALLE 10 # 43 - 55 EDIFICIO LA JULIANA - CALI</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- HOJA 5: AGRADECIMIENTO -->
-        <div class="page thanks-page">
-            <div class="bg-decor"></div>
-            <div class="bg-decor-2" style="top: 10%; right: 10%; left: auto; bottom: auto;"></div>
-            
-            <div class="thanks-content">
-                <img src="assets/logo.png" alt="Vuelta al Mundo Tours" class="thanks-logo">
-                <h1>¡Gracias por elegirnos!</h1>
-                <p>En Vuelta al Mundo Tours trabajamos todos los días para crear experiencias inolvidables. <br>Gracias por permitirnos ser parte de tu historia y de tus mejores recuerdos.</p>
-                
-                <div class="advisor-contact-card">
-                    <p>¿Tienes dudas adicionales sobre tu viaje?</p>
-                    <p style="font-size: 16px;">Contacta directamente a tu asesor asignado:</p>
-                    <h3 id="thanks-advisor">Tu Asesor</h3>
-                    <div class="contact-pill">📞 WhatsApp: 313 744 9530</div>
-                </div>
-
-                <p class="quote-text">"El mundo es un libro, y quienes no viajan leen solo una página."</p>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="js/firebase-config.js?v=1784867490"></script>
-    <script src="js/imprimible.js"></script>
+    <script src="js/config.js?v=20261026a"></script>
+    <script src="js/api.js?v=20261026a"></script>
+    <script src="js/legal.js?v=20261026a"></script>
+    <script src="js/imprimible.js?v=20261026a"></script>
 </body>
 </html>

@@ -1,26 +1,24 @@
 /* css/main.css - Estilos globales y tokens corporativos de Vuelta al Mundo Tours */
 
-@font-face {
-    font-family: "Goldplay";
-    src: url("../assets/fonts/Goldplay-Light.otf") format("opentype"),
-         url("assets/fonts/Goldplay-Light.otf") format("opentype");
-    font-weight: 300 900;
-    font-style: normal;
-}
+@font@import url("fonts.css");
 
 :root {
-    /* Paleta Oficial Especificada por el Usuario */
-    --c-brand-blue: #1a4999;          /* Azul Fondo Principal */
-    --c-brand-turquoise: #369ef5;     /* Turquesa / Celeste */
-    --c-brand-coral: #f17d3a;         /* Coral / Naranja */
+    /* Alias usados en el HTML/JS */
+    --c-brand-primary: #FF7F00;
+    --c-brand-secondary: #1F9DF5;
+    --c-brand-yellow: #FF7F00;
+    /* Paleta oficial - Manual de Marca VAM v1.1 */
+    --c-brand-blue: #1a4999;          /* Azul fondo de marca */
+    --c-brand-turquoise: #1F9DF5;     /* Boton Azul (Pantone 299C) */
+    --c-brand-coral: #FF7F00;         /* Fresco Naranja (Pantone 151C) */
     --c-black: #000000;               /* Negro Puro */
     --c-dark-card: #0a0a0a;           /* Negro Tarjeta */
     --c-dark-input: #111111;          /* Negro Input */
     --c-white: #ffffff;               /* Blanco */
 
     /* Acentos e Interacción */
-    --c-brand-coral-hover: #d96827;
-    --c-brand-turquoise-hover: #2187e0;
+    --c-brand-coral-hover: #E06F00;
+    --c-brand-turquoise-hover: #1585D6;
     --c-text-muted: #94a3b8;
     --c-border-dark: #222222;
     --c-border-light: rgba(255, 255, 255, 0.15);
@@ -28,8 +26,8 @@
     /* Sombras */
     --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.25);
     --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-    --shadow-coral-glow: 0 8px 25px rgba(241, 125, 58, 0.4);
-    --shadow-turquoise-glow: 0 8px 25px rgba(54, 158, 245, 0.4);
+    --shadow-coral-glow: 0 8px 25px rgba(255, 127, 0, 0.4);
+    --shadow-turquoise-glow: 0 8px 25px rgba(31, 157, 245, 0.4);
 
     /* Transiciones */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -41,7 +39,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Goldplay', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    -webkit-text-stroke: 0.4px currentColor;
+
 }
 
 body {
@@ -60,8 +58,8 @@ strong, b, h1, h2, h3, h4, h5, h6,
 th, legend, .submit-button, .action-button,
 .saldo-box p, .voucher-title h2,
 .quote-card h3, .dashboard-header h2 {
-    font-weight: 900 !important;
-    -webkit-text-stroke: 0.9px currentColor;
+    font-weight: 700 !important;
+
 }
 
 /* Scrollbar Personalizado */
@@ -108,7 +106,7 @@ th, legend, .submit-button, .action-button,
 }
 .btn-vam-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(241, 125, 58, 0.6);
+    box-shadow: 0 12px 30px rgba(255, 127, 0, 0.6);
 }
 
 .btn-vam-secondary {
@@ -131,7 +129,7 @@ th, legend, .submit-button, .action-button,
 .btn-vam-secondary:hover {
     background: var(--c-brand-turquoise-hover);
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(54, 158, 245, 0.6);
+    box-shadow: 0 12px 30px rgba(31, 157, 245, 0.6);
 }
 
 /* Animaciones globales */

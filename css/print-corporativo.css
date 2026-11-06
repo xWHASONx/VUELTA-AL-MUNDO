@@ -1,0 +1,106 @@
+/* css/print-corporativo.css - Documentos imprimibles corporativos de Vuelta al Mundo Tours
+   Tamaño carta. Solo paleta oficial (#1A4999, #1F9DF5, #FF7F00, blanco, negro) y tipografía Goldplay.
+   Sin fotos, sin sombras ni trazos sobre texto (manual de marca v1.1). */
+@import url("fonts.css");
+
+:root {
+    --vam-azul: #1a4999;
+    --vam-boton: #1F9DF5;
+    --vam-naranja: #FF7F00;
+    --vam-negro: #0a0a0a;
+    --vam-texto: #1e293b;
+    --vam-gris: #64748b;
+    --vam-linea: #e2e8f0;
+    --vam-fondo: #f5f8fc;
+}
+
+.doc-page { font-family: "Goldplay", sans-serif; color: var(--vam-texto); background: #fff; width: 215.9mm; min-height: 279.4mm; margin: 0 auto; box-sizing: border-box; padding: 0 0 14mm; position: relative; display: flex; flex-direction: column; }
+.doc-page * { box-sizing: border-box; font-family: "Goldplay", sans-serif; }
+
+/* Cabecera de marca */
+.doc-header { background: var(--vam-azul); color: #fff; padding: 9mm 16mm; display: flex; align-items: center; justify-content: space-between; border-bottom: 2.5mm solid var(--vam-naranja); }
+.doc-header img { height: 15mm; width: auto; }
+.doc-header .doc-kind { text-align: right; }
+.doc-header .doc-kind h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+.doc-header .doc-kind p { margin: 3px 0 0; font-size: 11px; color: #fff; opacity: .85; }
+
+.doc-body { padding: 8mm 16mm 0; flex-grow: 1; }
+
+/* Bloque de datos generales */
+.doc-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm 6mm; padding: 5mm 6mm; background: var(--vam-fondo); border-left: 1.5mm solid var(--vam-boton); margin-bottom: 7mm; }
+.doc-meta div span { display: block; font-size: 8.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--vam-gris); font-weight: 700; }
+.doc-meta div strong { display: block; font-size: 12px; font-weight: 700; color: var(--vam-azul); margin-top: 1px; }
+.doc-meta div.wide { grid-column: span 3; }
+
+/* Títulos de sección */
+.doc-section { font-size: 12px; font-weight: 700; color: var(--vam-azul); text-transform: uppercase; letter-spacing: 1.5px; margin: 5mm 0 2.5mm; padding-bottom: 1.5mm; border-bottom: 0.5mm solid var(--vam-boton); }
+
+/* Tablas de detalle */
+.doc-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.doc-table th, .doc-table td { text-align: left; padding: 1.9mm 3mm; border-bottom: 0.3mm solid var(--vam-linea); vertical-align: top; }
+.doc-table th { width: 38%; font-weight: 700; color: var(--vam-gris); font-size: 9.5px; text-transform: uppercase; letter-spacing: .6px; background: var(--vam-fondo); }
+.doc-table td { color: var(--vam-texto); font-weight: 500; }
+.doc-table td.precio { color: var(--vam-naranja); font-weight: 700; font-size: 12.5px; white-space: nowrap; text-align: right; }
+.doc-table.servicios th { width: auto; }
+.doc-table.servicios td.precio { width: 32%; }
+.doc-table .sub { display: block; font-size: 9.5px; color: var(--vam-gris); font-weight: 500; margin-top: 1px; }
+
+/* Opciones de compra */
+.doc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 2mm; }
+.doc-options.single { grid-template-columns: 1fr; }
+.doc-option { border: 0.5mm solid var(--vam-azul); padding: 4.5mm 5mm; break-inside: avoid; }
+.doc-box, .doc-contact, .doc-meta, .doc-table tr { break-inside: avoid; }
+.doc-option.destacada { background: var(--vam-azul); color: #fff; border-color: var(--vam-azul); }
+.doc-option small { display: block; font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--vam-boton); }
+.doc-option.destacada small { color: #fff; opacity: .85; }
+.doc-option span { display: block; font-size: 12px; font-weight: 700; margin: 1mm 0 2mm; color: var(--vam-azul); }
+.doc-option.destacada span { color: #fff; }
+.doc-option strong { display: block; font-size: 20px; font-weight: 700; color: var(--vam-naranja); }
+.doc-option.destacada strong { color: #fff; }
+.doc-option em { display: block; font-style: normal; font-size: 9.5px; color: var(--vam-gris); margin-top: 1mm; }
+.doc-option.destacada em { color: #fff; opacity: .85; }
+.doc-hint { font-size: 9.5px; color: var(--vam-gris); margin: 2mm 0 0; }
+
+/* Cajas de texto */
+.doc-box { border: 0.3mm solid var(--vam-linea); padding: 3.5mm 4mm; font-size: 10.5px; line-height: 1.5; margin-top: 2mm; }
+.doc-box strong { color: var(--vam-azul); }
+.doc-box.alerta { border-left: 1.5mm solid var(--vam-naranja); }
+.doc-saldo { display: flex; justify-content: space-between; align-items: center; background: var(--vam-azul); color: #fff; padding: 4.5mm 6mm; margin-top: 4mm; }
+.doc-saldo span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.doc-saldo strong { font-size: 20px; font-weight: 700; color: #fff; }
+
+/* Contacto */
+.doc-contact { display: flex; align-items: center; justify-content: space-between; gap: 6mm; margin-top: 7mm; padding: 4mm 5mm; background: var(--vam-fondo); border-left: 1.5mm solid var(--vam-naranja); font-size: 10.5px; }
+.doc-contact strong { color: var(--vam-azul); font-size: 12px; display: block; }
+.doc-contact .wa { font-weight: 700; color: var(--vam-naranja); white-space: nowrap; font-size: 12px; }
+
+/* Texto legal */
+.doc-legal { font-size: 8.8px; line-height: 1.42; color: var(--vam-texto); column-count: 2; column-gap: 7mm; }
+.doc-legal h3 { font-size: 10px; color: var(--vam-azul); margin: 3mm 0 1.5mm; break-after: avoid; font-weight: 700; }
+.doc-legal h3:first-child { margin-top: 0; }
+.doc-legal p { margin: 0 0 2mm; }
+.doc-legal.one-col { column-count: 1; font-size: 9.5px; }
+
+/* Firmas */
+.doc-signatures { display: flex; justify-content: space-between; gap: 14mm; margin-top: 12mm; }
+.doc-signature { flex: 1; text-align: center; font-size: 9.5px; color: var(--vam-gris); }
+.doc-signature .line { border-top: 0.4mm solid var(--vam-azul); height: 14mm; margin-bottom: 2mm; }
+.doc-signature strong { display: block; color: var(--vam-azul); font-size: 11px; }
+.doc-acceptance { font-size: 9.5px; margin-top: 5mm; line-height: 1.45; }
+
+/* Pie de página */
+.doc-footer { margin: auto 16mm 0; padding-top: 3mm; border-top: 0.3mm solid var(--vam-linea); display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; color: var(--vam-gris); }
+.doc-footer strong { color: var(--vam-azul); }
+.doc-footer .page-no { color: var(--vam-boton); font-weight: 700; }
+
+@page { size: letter; margin: 0; }
+@media print {
+    html, body { margin: 0; padding: 0; background: #fff; }
+    .doc-page { width: 100%; min-height: 100vh; margin: 0; page-break-after: always; box-shadow: none; }
+    .doc-page:last-child { page-break-after: auto; }
+    .no-print { display: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* Confirmación pagada */
+.doc-saldo.doc-pagado { background: #15803d; }

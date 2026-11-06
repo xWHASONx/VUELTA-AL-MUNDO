@@ -1,0 +1,81 @@
+/* vuelos.css — estilos del buscador y del itinerario.
+   Cambia estas variables por los colores de la marca del proyecto. */
+:root {
+  --vu-primario: #1a4999;     /* azul de marca */
+  --vu-secundario: #1F9DF5;   /* Bóton Azul */
+  --vu-suave: #9cc9f5;        /* líneas */
+  --vu-acento: #FF7F00;       /* Fresco Naranja: precios, escalas */
+  --vu-claro: #ffffff;
+  --vu-panel: #f5f8fc;
+  --vu-hundido: #e6f2f3;
+  --vu-borde: #d9dde3;
+  --vu-borde-fuerte: #b8c4d6;
+  --vu-texto-suave: #64748b;
+  --vu-blanco: #ffffff;
+}
+/* Botones del buscador (el cotizador no trae .btn genérico) */
+.vu-btn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent; border-radius: 9px; padding: 8px 13px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; line-height: 1; }
+.vu-btn.primario { background: var(--vu-acento); color: #fff; }
+.vu-btn.primario:hover { background: #E06F00; }
+.vu-btn.secundario { background: #fff; color: var(--vu-primario); border-color: var(--vu-borde-fuerte); }
+.vu-btn.secundario:hover { background: var(--vu-panel); }
+.vu-btn.peligro { background: rgba(225,29,72,.1); color: #e11d48; border-color: rgba(225,29,72,.3); }
+.etiqueta.ok { background: rgba(31,157,245,.14); color: var(--vu-primario); }
+.etiqueta.pendiente { background: rgba(255,127,0,.16); color: var(--vu-acento); }
+.vuelo.mejor { border-color: var(--vu-secundario); box-shadow: 0 0 0 2px rgba(31,157,245,.18); }
+.panel-vuelos { background: var(--vu-panel); border: 1px solid var(--vu-borde); border-radius: 12px; padding: 14px; }
+.panel-cargando { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--vu-texto-suave); }
+.panel-cargando .spinner { width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--vu-borde); border-top-color: var(--vu-primario); animation: vu-girar .8s linear infinite; }
+@keyframes vu-girar { to { transform: rotate(360deg); } }
+.comparacion-cab { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; margin-bottom: 8px; }
+.etiqueta { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 100px; background: var(--vu-hundido); color: var(--vu-texto-suave); }
+.nota { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--vu-panel); border: 1px solid var(--vu-borde); border-left: 4px solid var(--vu-acento); font-size: 13px; color: var(--vu-texto-suave); }
+.nota.ok { border-left-color: var(--vu-secundario); }
+.ayuda { font-size: 12.5px; color: var(--vu-texto-suave); }
+.referencia-vuelos { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+/* Resultados */
+.vuelos { display: grid; gap: 8px; }
+.vuelo { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--vu-blanco); border: 1px solid var(--vu-borde); border-radius: 10px; padding: 10px 12px; }
+.vuelo-info { display: flex; gap: 10px; align-items: center; min-width: 0; }
+.vuelo-info img { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
+.vuelo-info b { font-size: 13.5px; color: var(--vu-primario); }
+.vuelo-info small { font-size: 11px; color: var(--vu-texto-suave); margin-left: 4px; }
+.vuelo-info span { display: block; font-size: 12.5px; margin-top: 2px; }
+.vuelo-info > div > small { display: block; margin: 2px 0 0; }
+.vuelo-precio { text-align: right; }
+.vuelo-precio strong { display: block; font-size: 17px; font-weight: 900; color: var(--vu-acento); }
+.vuelo-precio small { display: block; font-size: 10.5px; color: var(--vu-texto-suave); }
+.vuelo-precio em { display: block; font-style: normal; font-size: 11.5px; font-weight: 700; color: var(--vu-primario); margin-top: 2px; }
+.vuelo-botones { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; margin-top: 6px; }
+@media (max-width: 760px) { .vuelo { grid-template-columns: 1fr; } .vuelo-precio { text-align: left; } .vuelo-botones { justify-content: flex-start; } }
+
+/* Itinerario (PDF) */
+.doc-vuelo { border: 1px solid var(--vu-borde); border-radius: 14px; overflow: hidden; margin-top: 12px; background: var(--vu-blanco); }
+.doc-vuelo-op { background: var(--vu-hundido); padding: 6px 16px; font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--vu-primario); }
+.itin { padding: 14px 18px 12px; border-bottom: 1px dashed var(--vu-borde-fuerte); }
+.itin-cab { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.itin-tipo { font-size: 10.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--vu-claro); background: var(--vu-primario); padding: 3px 10px; border-radius: 100px; }
+.itin-fecha { font-size: 12.5px; font-weight: 700; color: var(--vu-acento); }
+.itin-linea { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 10px; align-items: center; }
+.itin-punto strong { display: block; font-size: 26px; font-weight: 900; color: var(--vu-primario); line-height: 1; }
+.itin-punto strong sup { font-size: 11px; color: var(--vu-acento); margin-left: 2px; }
+.itin-punto b { display: block; font-size: 14px; font-weight: 800; margin-top: 4px; letter-spacing: .04em; }
+.itin-punto small { display: block; font-size: 10.5px; color: var(--vu-texto-suave); line-height: 1.3; }
+.itin-punto.der { text-align: right; }
+.itin-medio { text-align: center; }
+.itin-dur { font-size: 11px; font-weight: 700; color: var(--vu-texto-suave); }
+.itin-barra { position: relative; height: 2px; background: var(--vu-suave); margin: 6px 8px; display: flex; justify-content: space-evenly; align-items: center; }
+.itin-barra::before, .itin-barra::after { content: ""; position: absolute; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--vu-primario); }
+.itin-barra::before { left: -4px; } .itin-barra::after { right: -4px; }
+.itin-barra i { width: 10px; height: 10px; border-radius: 50%; background: var(--vu-blanco); border: 2px solid var(--vu-acento); box-sizing: border-box; }
+.itin-esc { font-size: 11px; color: var(--vu-acento); font-weight: 700; }
+.itin-pie { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--vu-texto-suave); }
+.itin-pie img { width: 22px; height: 22px; object-fit: contain; }
+.itin-equipaje { display: flex; align-items: center; gap: 8px; padding: 10px 18px; font-size: 12px; font-weight: 600; background: var(--vu-panel); }
+.itin-equipaje svg { width: 18px; height: 18px; color: var(--vu-secundario); flex-shrink: 0; }
+@media (max-width: 760px) { .itin-linea { grid-template-columns: 1fr 1fr; } .itin-medio { grid-column: 1 / -1; order: 3; } }
+.panel-cargando { align-items: flex-start; line-height: 1.45; }
+.panel-cargando small { color: var(--vu-texto-suave); }
+.panel-cargando .vu-seg { color: var(--vu-acento); margin-left: 6px; }
+.nota.ok { align-items: center; }

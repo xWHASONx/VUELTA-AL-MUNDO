@@ -1,0 +1,16 @@
+# Protege la configuración y la librería
+<Files "config.php">
+    Require all denied
+</Files>
+<Files "config.example.php">
+    Require all denied
+</Files>
+<FilesMatch "\.(sql|md|log)$">
+    Require all denied
+</FilesMatch>
+
+# Los adjuntos solo se sirven por documento.php (enlace secreto)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^archivos/ - [F]
+</IfModule>

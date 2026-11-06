@@ -21,3 +21,6 @@ npm-debug.log*
 .AppleDouble
 Icon?
 ._*
+
+# Configuración privada de la API (nunca subir)
+api/config.php

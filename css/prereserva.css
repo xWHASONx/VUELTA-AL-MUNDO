@@ -1,19 +1,17 @@
 /* css/prereserva.css - Estilos corporativos para Pre-Reserva de Vuelta al Mundo Tours */
 
-@font-face {
-    font-family: "Goldplay";
-    src: url("../assets/fonts/Goldplay-Light.otf") format("opentype"),
-         url("assets/fonts/Goldplay-Light.otf") format("opentype");
-    font-weight: 300 900;
-    font-style: normal;
-}
+@font@import url("fonts.css");
 
 :root {
+    /* Alias usados en el HTML/JS */
+    --c-brand-primary: #FF7F00;
+    --c-brand-secondary: #1F9DF5;
+    --c-brand-yellow: #FF7F00;
     /* Paleta Oficial */
-    --c-brand-blue: #1a4999;          /* Azul Fondo Principal */
-    --c-brand-turquoise: #369ef5;     /* Turquesa / Celeste */
-    --c-brand-coral: #f17d3a;         /* Coral / Naranja */
-    --c-brand-coral-hover: #d96827;
+    --c-brand-blue: #1a4999;          /* Azul fondo de marca */
+    --c-brand-turquoise: #1F9DF5;     /* Boton Azul (Pantone 299C) */
+    --c-brand-coral: #FF7F00;         /* Fresco Naranja (Pantone 151C) */
+    --c-brand-coral-hover: #E06F00;
     --c-black: #000000;
     --c-dark-card: #0a0a0a;
     --c-dark-input: #111111;
@@ -25,7 +23,7 @@
 * { 
     font-family: 'Goldplay', sans-serif !important; 
     box-sizing: border-box;
-    -webkit-text-stroke: 0.4px currentColor;
+
 }
 
 body { 
@@ -40,8 +38,8 @@ strong, b, h1, h2, h3, h4, h5, h6,
 .confirmation-pill, .submit-button, .action-button,
 legend, th, .saldo-box p, .voucher-title h2,
 .adicional-banner h4, .garantia-box h3 { 
-    font-weight: 900 !important;
-    -webkit-text-stroke: 0.9px currentColor; 
+    font-weight: 700 !important;
+ 
 }
 
 /* Wrapper - Fondo BLANCO para la tarjeta del formulario */
@@ -66,7 +64,7 @@ legend, th, .saldo-box p, .voucher-title h2,
 
 /* Secciones */
 .section { padding: 40px; text-align: center; color: #1e293b; }
-h1, h2, h3 { font-weight: 800; line-height: 1.2; -webkit-text-stroke: 0.9px currentColor; }
+h1, h2, h3 { font-weight: 700; line-height: 1.2; }
 h1 { font-size: 32px; margin-bottom: 10px; color: var(--c-brand-blue); }
 .intro-text { font-size: 15px; color: var(--c-gray); max-width: 600px; margin: 0 auto; }
 
@@ -76,7 +74,7 @@ form { margin-top: 30px; text-align: left; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .form-group { display: flex; flex-direction: column; position: relative; }
 .form-group.full-width { grid-column: 1 / -1; }
-.form-group label { font-weight: 700; font-size: 13px; margin-bottom: 8px; color: var(--c-brand-blue); text-transform: uppercase; letter-spacing: 0.5px; -webkit-text-stroke: 0.6px currentColor; }
+.form-group label { font-weight: 700; font-size: 13px; margin-bottom: 8px; color: var(--c-brand-blue); text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* Inputs */
 .form-group input, .form-group textarea, .form-group select { 
@@ -95,7 +93,7 @@ form { margin-top: 30px; text-align: left; }
     outline: none; 
     border-color: var(--c-brand-coral); 
     background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(241, 125, 58, 0.25); 
+    box-shadow: 0 0 0 4px rgba(255, 127, 0, 0.25); 
 }
 
 .currency-group { display: flex; gap: 10px; }
@@ -111,18 +109,18 @@ form { margin-top: 30px; text-align: left; }
     padding: 18px; 
     border-radius: 14px; 
     font-size: 17px; 
-    font-weight: 800; 
+    font-weight: 700; 
     border: none; 
     cursor: pointer; 
     margin-top: 35px; 
     transition: all 0.3s ease; 
-    box-shadow: 0 8px 25px rgba(241, 125, 58, 0.4); 
+    box-shadow: 0 8px 25px rgba(255, 127, 0, 0.4); 
     text-transform: uppercase; 
     letter-spacing: 0.5px; 
 }
 .submit-button:hover { 
     transform: translateY(-3px); 
-    box-shadow: 0 12px 30px rgba(241, 125, 58, 0.6); 
+    box-shadow: 0 12px 30px rgba(255, 127, 0, 0.6); 
 }
 
 /* VOUCHER / CONFIRMACIÓN */
@@ -149,7 +147,7 @@ form { margin-top: 30px; text-align: left; }
     padding: 14px 36px;
     border-radius: 50px;
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -174,7 +172,7 @@ form { margin-top: 30px; text-align: left; }
 }
 
 .voucher-title { background-color: var(--c-brand-turquoise); color: var(--c-white); padding: 18px 25px; }
-.voucher-title h2 { font-size: 20px; color: var(--c-white); margin: 0; font-weight: 800; letter-spacing: 0.5px; }
+.voucher-title h2 { font-size: 20px; color: var(--c-white); margin: 0; font-weight: 700; letter-spacing: 0.5px; }
 
 .voucher-body { padding: 28px 25px; }
 
@@ -187,8 +185,8 @@ form { margin-top: 30px; text-align: left; }
 .data-item-content p { font-size: 15px; font-weight: 600; margin: 0; white-space: pre-wrap; word-wrap: break-word; color: #1e293b; }
 
 .saldo-box { background: linear-gradient(135deg, var(--c-brand-blue), #0c2b63); border: none; padding: 28px; text-align: center; color: var(--c-white); border-radius: 16px; }
-.saldo-box strong { font-size: 15px; color: var(--c-brand-coral); font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-.saldo-box p { font-size: 36px; font-weight: 900; color: var(--c-white); margin: 6px 0 0 0; }
+.saldo-box strong { font-size: 15px; color: var(--c-brand-coral); font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+.saldo-box p { font-size: 36px; font-weight: 700; color: var(--c-white); margin: 6px 0 0 0; }
 
 .garantia-box { padding: 28px; border: 2px dashed var(--c-brand-turquoise); background: #f8fafc; }
 .garantia-box h3 { font-size: 20px; margin: 0 0 18px 0; color: var(--c-brand-blue); }
@@ -219,14 +217,14 @@ form { margin-top: 30px; text-align: left; }
 .adicional-banner-cta { 
     display: inline-block;
     font-size: 13px; 
-    font-weight: 800; 
+    font-weight: 700; 
     color: var(--c-brand-coral); 
     text-decoration: underline;
-    -webkit-text-stroke: 0.5px currentColor;
+
 }
 .adicional-banner-price { text-align: right; }
 .price-label { font-size: 12px; color: #64748b; text-transform: uppercase; }
-.price-amount { font-size: 20px; font-weight: 900; color: var(--c-brand-coral); -webkit-text-stroke: 0.8px currentColor; }
+.price-amount { font-size: 20px; font-weight: 700; color: var(--c-brand-coral); }
 
 /* FIRMA ELECTRÓNICA */
 .signature-section {
@@ -272,11 +270,11 @@ form { margin-top: 30px; text-align: left; }
     padding: 10px 24px;
     border-radius: 10px;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
     border: none;
-    -webkit-text-stroke: 0.5px currentColor;
+
 }
 .btn-clear-signature {
     background-color: #fee2e2;
@@ -290,11 +288,11 @@ form { margin-top: 30px; text-align: left; }
 .btn-confirm-signature {
     background: linear-gradient(135deg, var(--c-brand-coral), var(--c-brand-coral-hover));
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(241, 125, 58, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 127, 0, 0.3);
 }
 .btn-confirm-signature:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(241, 125, 58, 0.5);
+    box-shadow: 0 8px 20px rgba(255, 127, 0, 0.5);
 }
 .signature-confirmed {
     display: none;
@@ -306,7 +304,7 @@ form { margin-top: 30px; text-align: left; }
     color: #166534;
     font-weight: 700;
     font-size: 14px;
-    -webkit-text-stroke: 0.5px currentColor;
+
 }
 #signature-preview {
     max-width: 300px;
@@ -318,11 +316,11 @@ form { margin-top: 30px; text-align: left; }
 
 /* BOTONES DE ACCIÓN */
 .action-buttons { margin-top: 35px; display: flex; gap: 15px; justify-content: center; padding: 0 20px; }
-.action-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 30px; border-radius: 12px; font-size: 16px; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; flex-grow: 1; }
-.action-button.download { background-color: var(--c-brand-coral); color: var(--c-white); box-shadow: 0 4px 15px rgba(241, 125, 58, 0.4); }
+.action-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 30px; border-radius: 12px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; flex-grow: 1; }
+.action-button.download { background-color: var(--c-brand-coral); color: var(--c-white); box-shadow: 0 4px 15px rgba(255, 127, 0, 0.4); }
 .action-button.download:hover { background-color: var(--c-brand-coral-hover); transform: translateY(-2px); }
-.action-button.edit { background-color: var(--c-brand-turquoise); color: var(--c-white); box-shadow: 0 4px 15px rgba(54, 158, 245, 0.4); }
-.action-button.edit:hover { background-color: #2187e0; transform: translateY(-2px); }
+.action-button.edit { background-color: var(--c-brand-turquoise); color: var(--c-white); box-shadow: 0 4px 15px rgba(31, 157, 245, 0.4); }
+.action-button.edit:hover { background-color: #1585D6; transform: translateY(-2px); }
 .action-button.secondary { background-color: var(--c-white); color: var(--c-brand-blue); border: 1px solid #cbd5e1; } 
 .action-button.secondary:hover { background-color: #f8fafc; transform: translateY(-2px); }
 
@@ -337,3 +335,95 @@ form { margin-top: 30px; text-align: left; }
     .data-grid { grid-template-columns: 1fr; }
     .action-buttons { flex-direction: column; }
 }
+/* Políticas oficiales dentro del comprobante */
+.politicas-body { font-size: 12.5px; line-height: 1.55; color: #334155; }
+.politicas-body p { margin: 0 0 7px; }
+.politicas-body a { color: var(--c-brand-turquoise); }
+
+/* Ítem "Plan incluye" dentro de políticas */
+.info-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 14px; }
+.info-item svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--c-brand-turquoise); }
+
+
+/* ===== Documentación adjunta (formulario) ===== */
+.docs-section .docs-help { font-size: 13px; color: #64748b; margin: 0 0 10px; line-height: 1.5; }
+.docs-zone { border: 2px dashed #b9d7f3; border-radius: 14px; padding: 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: #f5f9fe; transition: all .2s; }
+.docs-zone.arrastrando { border-color: var(--c-brand-coral); background: #fff4e8; }
+.docs-btn { background: var(--c-brand-turquoise); color: #fff; border: none; border-radius: 10px; padding: 12px 18px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; }
+.docs-btn:hover { background: #1585D6; }
+.docs-zone-hint { font-size: 13px; color: #64748b; }
+.docs-zone.sin-api { opacity: .6; }
+.docs-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.doc-item { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 12px; }
+.doc-item .doc-ico { font-size: 24px; text-align: center; }
+.doc-item .doc-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.doc-item input.doc-titulo { border: 1px solid transparent; border-radius: 8px; padding: 6px 8px; font-family: inherit; font-size: 14px; font-weight: 700; color: #1e293b; background: #f8fafc; width: 100%; box-sizing: border-box; }
+.doc-item input.doc-titulo:focus { outline: none; border-color: var(--c-brand-turquoise); background: #fff; }
+.doc-item .doc-meta { font-size: 12px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.doc-item .doc-meta.error { color: #c0392b; font-weight: 700; white-space: normal; }
+.doc-item .doc-barra { height: 5px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+.doc-item .doc-barra i { display: block; height: 100%; width: 0; background: var(--c-brand-coral); transition: width .2s; }
+.doc-item .doc-acciones { display: flex; gap: 6px; }
+.doc-item .doc-acciones a, .doc-item .doc-acciones button { border: 1px solid #cbd5e1; background: #fff; color: #1e293b; border-radius: 8px; padding: 6px 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; font-family: inherit; }
+.doc-item .doc-acciones button.quitar { color: #c0392b; border-color: #f5c6c6; }
+.docs-status { font-size: 13px; margin: 8px 0 0; color: #1a4999; font-weight: 600; }
+
+/* ===== Documentos en el comprobante ===== */
+.documentos-box { padding: 26px 28px; border-radius: 16px; border: 2px solid var(--c-brand-turquoise); background: #f1f7fe; margin-bottom: 30px; }
+.documentos-box h3 { font-size: 20px; color: var(--c-brand-blue); margin: 0 0 6px; font-weight: 700; }
+.documentos-box p { font-size: 14px; color: #475569; margin: 0 0 16px; line-height: 1.6; }
+.documentos-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.doc-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--c-brand-turquoise); color: #fff; text-decoration: none; padding: 12px 18px; border-radius: 10px; font-weight: 700; font-size: 14px; box-shadow: 0 6px 16px rgba(31,157,245,0.3); }
+.doc-btn:hover { background: #1585D6; }
+.doc-btn small { font-weight: 400; opacity: .85; font-size: 12px; }
+
+
+/* ===== Confirmador ===== */
+.confirmation-pill.pagada { background: linear-gradient(135deg, #16a34a, #15803d); }
+.saldo-box.pagada-box { background: linear-gradient(135deg, #15803d, #0b4d24); }
+.saldo-box.pagada-box strong { color: #bbf7d0; }
+.saldo-box.pagada-box p { font-size: 30px; }
+.pago-detalle { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 14px; font-size: 13px; color: #dcfce7; }
+.pago-detalle b { color: #fff; }
+.nota-pagada { font-size: 14px; color: #64748b; line-height: 1.6; margin: 0 0 14px; }
+.sub-fieldset { border: 1px dashed #b9d7f3; border-radius: 14px; padding: 16px; background: #f5f9fe; }
+.sub-fieldset > label { display: block; font-weight: 700; font-size: 13px; color: var(--c-brand-blue); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+.sub-fieldset .form-grid.small-gap { gap: 14px; }
+.desde-prereserva { background: #fff4e8; border: 1px dashed #ffb466; border-radius: 14px; padding: 16px; }
+.desde-row { display: flex; gap: 10px; }
+.desde-row select { flex: 1; }
+.desde-row .docs-btn { white-space: nowrap; background: var(--c-brand-coral); }
+.desde-row .docs-btn:hover { background: var(--c-brand-coral-hover); }
+
+
+/* ===== Panel de registros (pre-reservas / confirmaciones) ===== */
+#dashboard-section { background-color: var(--c-brand-blue); color: var(--c-white); padding: 0 40px 40px; min-height: 100vh; text-align: left; }
+#dashboard-section .header { margin: 0 -40px 30px; border-radius: 0; }
+.header-user-info { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 16px; color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; }
+.header-link { color: #fff; text-decoration: none; font-weight: 700; opacity: .8; }
+.btn-logout { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.btn-logout:hover { background: #e11d48; border-color: #e11d48; }
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; gap: 16px; flex-wrap: wrap; }
+.dashboard-header h2 { color: #ffffff; font-size: 30px; margin: 0; letter-spacing: -0.5px; }
+.dashboard-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.dashboard-actions .action-button { flex-grow: 0; padding: 11px 18px; font-size: 14px; text-decoration: none; display: inline-block; }
+.dashboard-controls { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 30px; }
+.dashboard-controls input, .dashboard-controls select { padding: 15px 20px; border-radius: 14px; border: 2px solid #222222; font-size: 14px; font-weight: 600; background-color: var(--c-dark-card); color: #ffffff; font-family: inherit; }
+.dashboard-controls input:focus, .dashboard-controls select:focus { outline: none; border-color: var(--c-brand-turquoise); }
+.plan-banner { background: #fff4e8; border: 1px solid #ffd2a6; color: #7a3d00; border-radius: 14px; padding: 14px 18px; font-size: 14px; margin: 0 auto 16px; max-width: 700px; text-align: left; }
+.quotes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.quote-card { background: var(--c-dark-card); border-radius: 20px; padding: 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: left; transition: all .3s; position: relative; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; display: flex; flex-direction: column; }
+.quote-card:hover { transform: translateY(-6px); border-color: var(--c-brand-coral); }
+.quote-card h3 { color: #ffffff; font-size: 19px; margin: 14px 0 8px; padding-right: 90px; }
+.quote-card p { font-size: 14px; color: rgba(255,255,255,0.75); margin: 0 0 6px; }
+.quote-date { font-size: 12px; color: rgba(255,255,255,0.5); margin: 6px 0 12px; }
+.quote-badge { position: absolute; top: 20px; right: 20px; background: #222222; color: #ffffff; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px; max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quote-pill { display: inline-block; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 20px; margin: 4px 0; }
+.quote-pill.verde { background: rgba(22,163,74,.25); color: #4ade80; }
+.quote-pill.naranja { background: rgba(255,127,0,.22); color: #FF7F00; }
+.quote-card-actions { display: flex; gap: 8px; margin-top: auto; }
+.quote-card-actions button { flex: 1; padding: 9px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: #161616; color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.quote-card-actions .btn-delete { flex: 0 0 auto; color: #ff6b6b; }
+.quote-card-actions button:hover { background: #222; }
+.edit-banner { background: #e8f3ff; border: 1px solid #b9d7f3; color: #0c3d78; border-radius: 14px; padding: 12px 18px; font-size: 14px; margin: 14px auto 0; max-width: 700px; }
+@media (max-width: 768px) { #dashboard-section { padding: 0 16px 30px; } #dashboard-section .header { margin: 0 -16px 20px; } .dashboard-controls { grid-template-columns: 1fr; } }

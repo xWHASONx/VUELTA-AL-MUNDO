@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes Precargados - Vuelta al Mundo Tours</title>
+    <link rel="icon" href="assets/logo/logo-circular-blanco.png">
+    <link rel="stylesheet" href="css/fonts.css?v=20261026a">
+    <link rel="stylesheet" href="css/main.css?v=20261026a">
+    <style>
+        body { background-color: #1a4999; color: #fff; min-height: 100vh; }
+        .topbar {
+            background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50;
+        }
+        .topbar img { height: 34px; }
+        .topbar a.back { color: #1F9DF5; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+        h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+        .intro { color: rgba(255,255,255,0.8); margin-bottom: 30px; }
+        .steps { display: flex; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
+        .step { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 30px; padding: 8px 16px; font-size: 13px; font-weight: 600; }
+        .step.on { background: #FF7F00; border-color: #FF7F00; }
+
+        .destinos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 36px; }
+        .destino {
+            background: #0a0a0a; border: 2px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 24px; cursor: pointer;
+            transition: all .25s; text-align: left;
+        }
+        .destino:hover { transform: translateY(-4px); border-color: #1F9DF5; }
+        .destino.active { border-color: #FF7F00; box-shadow: 0 10px 30px rgba(255,127,0,0.3); }
+        .destino .emoji { font-size: 34px; margin-bottom: 10px; }
+        .destino h3 { color: #fff; font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+        .destino p { color: rgba(255,255,255,0.65); font-size: 13px; margin: 0; }
+        .destino .count { display: inline-block; margin-top: 12px; background: rgba(31,157,245,0.2); color: #1F9DF5; border: 1px solid rgba(31,157,245,0.4); border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+
+        #hoteles-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; display: none; }
+        .hoteles { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        .hotel {
+            background: #fff; color: #1e293b; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            display: flex; flex-direction: column; transition: transform .25s;
+        }
+        .hotel:hover { transform: translateY(-6px); }
+        .hotel .fotos { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 90px 90px; gap: 3px; background: #e2e8f0; }
+        .hotel .fotos img { width: 100%; height: 100%; object-fit: cover; display: block; background: #cbd5e1; }
+        .hotel .fotos img:first-child { grid-row: 1 / 3; }
+        .hotel .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+        .hotel h4 { margin: 0; font-size: 18px; font-weight: 700; color: #1a4999; }
+        .hotel .meta { font-size: 13px; color: #64748b; }
+        .hotel .price { margin-top: 4px; }
+        .hotel .price small { display: block; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+        .hotel .price strong { font-size: 24px; color: #FF7F00; font-weight: 700; }
+        .hotel .btn {
+            margin-top: auto; background: linear-gradient(135deg, #FF7F00, #E06F00); color: #fff; border: none; border-radius: 12px;
+            padding: 13px; font-weight: 700; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: .5px;
+            box-shadow: 0 8px 20px rgba(255,127,0,0.35); transition: all .2s;
+        }
+        .hotel .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(255,127,0,0.5); }
+        .hotel .nofotos { position: absolute; }
+        .empty { color: rgba(255,255,255,0.7); padding: 40px; text-align: center; border: 2px dashed rgba(255,255,255,0.2); border-radius: 20px; }
+        .equipo-title { font-size: 22px; font-weight: 700; margin: 50px 0 6px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.15); }
+        .equipo-title small { display: block; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 4px; }
+        .destino.equipo { border-color: rgba(255,127,0,0.35); }
+        .hotel .portada { height: 183px; background: #cbd5e1 center/cover no-repeat; display: flex; align-items: center; justify-content: center; font-size: 42px; }
+        .hotel .autor { font-size: 12px; color: #94a3b8; }
+        .hotel .btn-borrar { background: none; border: 1px solid #fecaca; color: #c0392b; border-radius: 10px; padding: 8px; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+        @media (max-width: 600px) { .topbar { padding: 12px 16px; } .wrap { padding: 24px 14px 60px; } h1 { font-size: 26px; } }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="hub.html"><img src="assets/logo/logo-linea-blanco.png" alt="Vuelta al Mundo Tours"></a>
+        <a class="back" href="hub.html">← Volver al Hub</a>
+    </div>
+
+    <div class="wrap">
+        <h1>Planes Precargados</h1>
+        <p class="intro">Elige el destino y luego el hotel. El cotizador se abre con todo diligenciado: solo pones el nombre del cliente y descargas.</p>
+
+        <div class="steps">
+            <span class="step on" id="step-1">1. Destino</span>
+            <span class="step" id="step-2">2. Hotel</span>
+            <span class="step" id="step-3">3. Cliente y descarga</span>
+        </div>
+
+        <div class="destinos" id="destinos"></div>
+
+        <h2 id="hoteles-title"></h2>
+        <div class="hoteles" id="hoteles"></div>
+
+        <h2 class="equipo-title">⭐ Planes creados por el equipo <small>desde el cotizador · se comparten entre todos los asesores</small></h2>
+        <div class="destinos" id="destinos-equipo"><p class="empty" style="grid-column:1/-1">Cargando planes del equipo…</p></div>
+        <h2 id="equipo-hoteles-title" style="display:none; font-size:22px; font-weight:700; margin-bottom:16px;"></h2>
+        <div class="hoteles" id="hoteles-equipo"></div>
+    </div>
+
+    <script src="js/config.js?v=20261026a"></script>
+    <script src="js/api.js?v=20261026a"></script>
+    <script src="js/planes.js?v=20261026a"></script>
+    <script>
+        const currentUser = localStorage.getItem('vam_user');
+        if (!currentUser || !VAM_CONFIG.ADVISORS[currentUser]) { localStorage.removeItem('vam_user'); window.location.href = 'index.html'; }
+
+        const destinosEl = document.getElementById('destinos');
+        const hotelesEl = document.getElementById('hoteles');
+        const titleEl = document.getElementById('hoteles-title');
+        const fmt = v => VAM_MONEY(v, 'COP');
+
+        VAM_PLANES.destinos.forEach(d => {
+            const card = document.createElement('button');
+            card.className = 'destino';
+            card.innerHTML = `<div class="emoji">${d.emoji}</div><h3>${d.nombre}</h3><p>${d.pais}</p><span class="count">${d.hoteles.length} hoteles</span>`;
+            card.addEventListener('click', () => showHoteles(d, card));
+            destinosEl.appendChild(card);
+        });
+
+        function showHoteles(d, card) {
+            document.querySelectorAll('.destino').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            document.getElementById('step-2').classList.add('on');
+            titleEl.style.display = 'block';
+            titleEl.textContent = `${d.emoji} Hoteles en ${d.nombre}`;
+            hotelesEl.innerHTML = '';
+            d.hoteles.forEach(h => {
+                const plan = Object.assign({}, VAM_PLANES.defaults, h);
+                const fotos = VAM_PLANES.fotosPlan(h);
+                const combo = h.combo ? VAM_PLANES.combos[h.combo] : null;
+                const el = document.createElement('div');
+                el.className = 'hotel';
+                el.innerHTML = `
+                    <div class="fotos">
+                        ${fotos.map(f => `<img src="${f}" alt="${h.nombre}" onerror="this.src='assets/hoteles/_placeholder.jpg'">`).join('')}
+                    </div>
+                    <div class="body">
+                        <h4>${h.nombre}</h4>
+                        <div class="meta">${combo ? `${d.pais} · 5 días / 4 noches · ${combo.playaNoches} noches playa todo incluido + ${combo.ciudadNoches} noches ciudad con desayuno · tours y traslados` : `${d.nombre}, ${d.pais} · ${plan.noches + 1} días / ${plan.noches} noches · ${regimenLabel(plan.regimen)}`}</div>
+                        <div class="price"><small>Desde, por persona</small><strong>${fmt(plan.precioPorPersona)}</strong></div>
+                        <button class="btn">Cotizar este plan →</button>
+                    </div>`;
+                el.querySelector('.btn').addEventListener('click', () => {
+                    localStorage.setItem('vam_plan_precargado', JSON.stringify({ destino: d.nombre, pais: d.pais, slug: h.slug, hotel: plan }));
+                    window.location.href = `cotizador.html?plan=${encodeURIComponent(h.slug)}`;
+                });
+                hotelesEl.appendChild(el);
+            });
+            titleEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ----- Planes creados por el equipo (base de datos) -----
+        const equipoEl = document.getElementById('destinos-equipo');
+        const equipoHotelesEl = document.getElementById('hoteles-equipo');
+        const equipoTitle = document.getElementById('equipo-hoteles-title');
+        let planesEquipo = [];
+        async function cargarPlanesEquipo() {
+            if (!(await VAM_API.ping())) { equipoEl.innerHTML = '<p class="empty" style="grid-column:1/-1">Sin conexión con el servidor: los planes del equipo no están disponibles.</p>'; return; }
+            try { planesEquipo = await VAM_API.planes.list(); } catch (e) { equipoEl.innerHTML = `<p class="empty" style="grid-column:1/-1">No se pudieron cargar: ${e.message}</p>`; return; }
+            pintarDestinosEquipo();
+        }
+        function pintarDestinosEquipo() {
+            equipoEl.innerHTML = '';
+            if (!planesEquipo.length) { equipoEl.innerHTML = '<p class="empty" style="grid-column:1/-1">Aún no hay planes del equipo. En el cotizador, arma una cotización y pulsa "⭐ Guardar como plan precargado".</p>'; equipoTitle.style.display = 'none'; equipoHotelesEl.innerHTML = ''; return; }
+            const grupos = {};
+            planesEquipo.forEach(pl => { const k = (pl.destino || 'Sin destino').trim(); (grupos[k] = grupos[k] || []).push(pl); });
+            Object.keys(grupos).sort().forEach(k => {
+                const card = document.createElement('button');
+                card.className = 'destino equipo';
+                card.innerHTML = `<div class="emoji">⭐</div><h3>${esc(k)}</h3><p>Planes del equipo</p><span class="count">${grupos[k].length} plan${grupos[k].length === 1 ? '' : 'es'}</span>`;
+                card.addEventListener('click', () => mostrarPlanesEquipo(k, grupos[k], card));
+                equipoEl.appendChild(card);
+            });
+        }
+        function mostrarPlanesEquipo(destino, lista, card) {
+            document.querySelectorAll('#destinos-equipo .destino').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            equipoTitle.style.display = 'block'; equipoTitle.textContent = `⭐ Planes del equipo en ${destino}`;
+            equipoHotelesEl.innerHTML = '';
+            lista.forEach(pl => {
+                const el = document.createElement('div');
+                el.className = 'hotel';
+                el.innerHTML = `
+                    <div class="portada" style="${pl.portada ? `background-image:url('${pl.portada}')` : ''}">${pl.portada ? '' : '🏨'}</div>
+                    <div class="body">
+                        <h4>${esc(pl.nombre)}</h4>
+                        <div class="meta">${esc(pl.resumen || 'Plan del equipo')}</div>
+                        <div class="autor">Creado por ${esc(pl.asesor_nombre || 'el equipo')} · ${(pl.created_at || '').slice(0, 10)}</div>
+                        <div class="price"><small>Desde, por persona</small><strong>${VAM_MONEY(pl.precio, pl.moneda || 'COP')}</strong></div>
+                        <button class="btn">Cotizar este plan →</button>
+                        <button class="btn-borrar">🗑️ Eliminar plan</button>
+                    </div>`;
+                el.querySelector('.btn').addEventListener('click', () => { window.location.href = `cotizador.html?planId=${pl.id}`; });
+                el.querySelector('.btn-borrar').addEventListener('click', async () => {
+                    if (!confirm(`¿Eliminar el plan "${pl.nombre}" para todo el equipo?`)) return;
+                    try { await VAM_API.planes.remove(pl.id); planesEquipo = planesEquipo.filter(x => x.id !== pl.id); pintarDestinosEquipo(); equipoTitle.style.display = 'none'; equipoHotelesEl.innerHTML = ''; }
+                    catch (e) { alert('No se pudo eliminar: ' + e.message); }
+                });
+                equipoHotelesEl.appendChild(el);
+            });
+            equipoTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        cargarPlanesEquipo();
+
+        function regimenLabel(r) {
+            return { todo_incluido: 'Todo incluido', pension_completa: 'Pensión completa', media_pension: 'Media pensión', desayuno: 'Hotel y desayuno', solo_hotel: 'Solo hotel' }[r] || r;
+        }
+    </script>
+</body>
+</html>

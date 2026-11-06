@@ -4,241 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vuelta al Mundo Tours - Acceso</title>
-    <link rel="stylesheet" href="css/main.css?v=1784890000">
+    <link rel="icon" href="assets/logo/logo-circular-blanco.png">
+    <link rel="stylesheet" href="css/fonts.css?v=20261026a">
+    <link rel="stylesheet" href="css/main.css?v=20261026a">
     <style>
-        @font-face {
-            font-family: "Goldplay";
-            src: url("assets/fonts/Goldplay-Light.otf") format("opentype");
-            font-weight: 300 900;
-            font-style: normal;
-        }
-
-        * { font-family: 'Goldplay', sans-serif !important; }
-
         body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a4999 0%, #0c2b63 100%);
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #1a4999 0%, #0c2b63 100%); position: relative; overflow-x: hidden;
         }
+        .bg-shape { position: absolute; filter: blur(90px); opacity: 0.5; border-radius: 50%; z-index: 0; animation: floatBlob 12s infinite ease-in-out alternate; }
+        .shape1 { width: 450px; height: 450px; background: #FF7F00; top: -120px; left: -120px; }
+        .shape2 { width: 550px; height: 550px; background: #1F9DF5; bottom: -160px; right: -120px; animation-delay: -6s; }
+        @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 50px) scale(1.1); } }
 
-        /* Formas Animadas de Fondo */
-        .bg-shape {
-            position: absolute;
-            filter: blur(90px);
-            opacity: 0.5;
-            border-radius: 50%;
-            z-index: 0;
-            animation: floatBlob 12s infinite ease-in-out alternate;
-        }
-        .shape1 {
-            width: 450px;
-            height: 450px;
-            background: #f17d3a;
-            top: -120px;
-            left: -120px;
-        }
-        .shape2 {
-            width: 550px;
-            height: 550px;
-            background: #369ef5;
-            bottom: -160px;
-            right: -120px;
-            animation-delay: -6s;
-        }
+        .login-wrapper { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 520px; padding: 32px 24px; animation: fadeIn 0.5s ease-out forwards; }
+        .brand-badge-top { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 6px 16px; border-radius: 50px; color: #ffffff; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+        .brand-logo { width: 200px; height: auto; margin-bottom: 28px; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35)); }
 
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 50px) scale(1.1); }
-        }
+        .glass-card { background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 28px; padding: 36px 28px; width: 100%; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); text-align: center; }
+        .glass-card h1 { color: #ffffff; font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+        .glass-card p.subtitle { color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-bottom: 26px; font-weight: 400; }
 
-        .login-wrapper {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 440px;
-            padding: 24px;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        
-        .brand-badge-top {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 6px 16px;
-            border-radius: 50px;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
+        .advisor-selection { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+        .advisor-btn { display: flex; align-items: center; gap: 12px; background: #ffffff; border: 2px solid transparent; padding: 10px 14px; border-radius: 18px; cursor: pointer; transition: all 0.25s; width: 100%; box-shadow: 0 6px 20px rgba(0,0,0,0.15); text-align: left; }
+        .advisor-btn:hover { transform: translateY(-3px); border-color: #1F9DF5; }
+        .advisor-btn.active { border-color: #FF7F00; box-shadow: 0 8px 25px rgba(255, 127, 0, 0.35); }
+        .advisor-btn img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2.5px solid #1a4999; flex-shrink: 0; background: #FF7F00; }
+        .advisor-info-text { display: flex; flex-direction: column; min-width: 0; }
+        .advisor-info-text span.name { font-size: 14px; font-weight: 700; color: #1a4999; line-height: 1.2; }
+        .advisor-info-text span.role { font-size: 12px; font-weight: 500; color: #64748b; }
 
-        .brand-logo-text {
-            color: #ffffff;
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            margin-bottom: 30px;
-            text-align: center;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-        .brand-logo-text span {
-            color: #f17d3a;
-        }
-
-        .glass-card {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 28px;
-            padding: 42px 32px;
-            width: 100%;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-
-        .glass-card h1 {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-        .glass-card p.subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-            margin-bottom: 32px;
-            font-weight: 400;
-        }
-
-        .advisor-selection {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .advisor-btn {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: #ffffff;
-            border: 2px solid transparent;
-            padding: 14px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            text-align: left;
-        }
-        .advisor-btn:hover {
-            transform: translateY(-3px);
-            border-color: #369ef5;
-        }
-        .advisor-btn.active {
-            border-color: #f17d3a;
-            box-shadow: 0 8px 25px rgba(241, 125, 58, 0.35);
-        }
-
-        .advisor-btn img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2.5px solid #1a4999;
-        }
-        .advisor-info-text {
-            display: flex;
-            flex-direction: column;
-        }
-        .advisor-info-text span.name {
-            font-size: 16px;
-            font-weight: 800;
-            color: #1a4999;
-        }
-        .advisor-info-text span.role {
-            font-size: 12px;
-            font-weight: 500;
-            color: #64748b;
-        }
-
-        .password-section {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-            margin-top: 10px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        .input-group input {
-            width: 100%;
-            background: #111111;
-            border: 2px solid #333333;
-            padding: 16px 20px;
-            border-radius: 14px;
-            font-size: 15px;
-            color: #ffffff;
-            font-weight: 600;
-            outline: none;
-            transition: all 0.3s;
-            text-align: center;
-        }
-        .input-group input:focus {
-            border-color: #369ef5;
-            background: #0a0a0a;
-            box-shadow: 0 0 0 4px rgba(54, 158, 245, 0.25);
-        }
-
-        #btn-login {
-            width: 100%;
-            padding: 16px;
-            background: #f17d3a;
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(241, 125, 58, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        #btn-login:hover {
-            background: #d96827;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(241, 125, 58, 0.6);
-        }
-
-        .error-msg {
-            color: #ffbeb8;
-            font-size: 13px;
-            margin-top: 14px;
-            display: none;
-            font-weight: 600;
-            background: rgba(225, 29, 72, 0.3);
-            border: 1px solid rgba(225, 29, 72, 0.5);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        
-        .footer-credit {
-            margin-top: 25px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 12px;
-            font-weight: 500;
-        }
+        .password-section { display: none; animation: fadeIn 0.4s ease forwards; margin-top: 18px; }
+        .password-section .who { color: rgba(255,255,255,0.85); font-size: 13px; margin-bottom: 12px; }
+        .password-section .who strong { color: #FF7F00; }
+        .input-group { position: relative; margin-bottom: 16px; }
+        .input-group input { width: 100%; background: #111111; border: 2px solid #333333; padding: 16px 20px; border-radius: 14px; font-size: 15px; color: #ffffff; font-weight: 600; outline: none; transition: all 0.3s; text-align: center; }
+        .input-group input:focus { border-color: #1F9DF5; background: #0a0a0a; box-shadow: 0 0 0 4px rgba(31, 157, 245, 0.25); }
+        #btn-login { width: 100%; padding: 16px; background: #FF7F00; color: white; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 25px rgba(255, 127, 0, 0.4); text-transform: uppercase; letter-spacing: 1px; }
+        #btn-login:hover { background: #E06F00; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 127, 0, 0.6); }
+        .error-msg { color: #ffbeb8; font-size: 13px; margin-top: 14px; display: none; font-weight: 600; background: rgba(225, 29, 72, 0.3); border: 1px solid rgba(225, 29, 72, 0.5); padding: 10px; border-radius: 10px; }
+        .footer-credit { margin-top: 25px; color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 500; text-align: center; }
+        @media (max-width: 480px) { .advisor-selection { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -247,23 +53,16 @@
 
     <div class="login-wrapper">
         <div class="brand-badge-top">Plataforma Operativa</div>
-        <div class="brand-logo-text">VUELTA AL MUNDO <span>TOURS</span></div>
-        
+        <img class="brand-logo" src="assets/logo/logo-vertical-blanco.png" alt="Vuelta al Mundo Tours">
+
         <div class="glass-card">
             <h1>Acceso de Asesores</h1>
-            <p class="subtitle">Selecciona tu perfil profesional para ingresar al Hub</p>
+            <p class="subtitle">Selecciona tu perfil para ingresar al Hub</p>
 
-            <div class="advisor-selection">
-                <button class="advisor-btn" data-advisor="Ana_Sofia_Posso">
-                    <img src="https://i.imgur.com/eg2dk3J.jpeg" alt="Ana Sofía Posso">
-                    <div class="advisor-info-text">
-                        <span class="name">Ana Sofía Posso</span>
-                        <span class="role">Asesora Senior de Viajes</span>
-                    </div>
-                </button>
-            </div>
+            <div class="advisor-selection" id="advisor-selection"></div>
 
             <div class="password-section" id="password-section">
+                <p class="who">Ingresando como <strong id="who-name"></strong></p>
                 <div class="input-group">
                     <input type="password" id="password-input" placeholder="Contraseña de acceso" autocomplete="current-password">
                 </div>
@@ -272,34 +71,41 @@
             </div>
         </div>
 
-        <p class="footer-credit">VUELTA AL MUNDO TOURS · RNT: 198181 · NIT: 901802306</p>
+        <p class="footer-credit">VUELTA AL MUNDO TOURS SAS · RNT: 198181 · NIT: 901802306-9</p>
     </div>
 
-    <script src="js/firebase-config.js?v=1784867490"></script>
+    <script src="js/config.js?v=20261026a"></script>
+    <script src="js/api.js?v=20261026a"></script>
     <script>
         let selectedAdvisor = null;
         const passwordSection = document.getElementById('password-section');
         const passwordInput = document.getElementById('password-input');
         const errorMsg = document.getElementById('error-msg');
+        const selection = document.getElementById('advisor-selection');
 
-        document.querySelectorAll('.advisor-btn').forEach(btn => {
+        // Pinta los asesores desde la configuración central
+        Object.entries(VAM_CONFIG.ADVISORS).forEach(([id, a]) => {
+            const btn = document.createElement('button');
+            btn.className = 'advisor-btn';
+            btn.dataset.advisor = id;
+            btn.innerHTML = `<img src="${a.photoUrl}" alt="${a.name}">
+                <div class="advisor-info-text"><span class="name">${a.name}</span><span class="role">${a.role || 'Asesor'}</span></div>`;
             btn.addEventListener('click', () => {
-                selectedAdvisor = btn.getAttribute('data-advisor') || 'Ana_Sofia_Posso';
-                document.querySelectorAll('.advisor-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
+                selectedAdvisor = id;
+                document.querySelectorAll('.advisor-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+                document.getElementById('who-name').textContent = a.name;
                 passwordSection.style.display = 'block';
                 passwordInput.focus();
                 errorMsg.style.display = 'none';
             });
+            selection.appendChild(btn);
         });
 
         function doLogin() {
             if (!selectedAdvisor) return;
             const enteredPass = passwordInput.value.trim().toUpperCase();
-            const validPass = (window.VAM_CONFIG && VAM_CONFIG.ACCESS_PASSWORD) ? VAM_CONFIG.ACCESS_PASSWORD : 'HOLA';
-            
+            const validPass = String(VAM_CONFIG.ACCESS_PASSWORD || 'HOLA').toUpperCase();
             if (enteredPass === validPass) {
                 localStorage.setItem('vam_user', selectedAdvisor);
                 window.location.href = 'hub.html';
@@ -309,12 +115,11 @@
                 passwordInput.focus();
             }
         }
-
         document.getElementById('btn-login').addEventListener('click', doLogin);
         passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
         const existingUser = localStorage.getItem('vam_user');
-        if (existingUser && window.VAM_CONFIG && VAM_CONFIG.ADVISORS && VAM_CONFIG.ADVISORS[existingUser]) {
+        if (existingUser && VAM_CONFIG.ADVISORS[existingUser]) {
             window.location.href = 'hub.html';
         }
     </script>
